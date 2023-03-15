@@ -16,7 +16,7 @@ const express_1 = __importDefault(require("express"));
 const database_config_1 = require("./database/database-config");
 const userRoute_1 = __importDefault(require("./routes/userRoute"));
 const app = (0, express_1.default)();
-app.use(userRoute_1.default);
+app.use('/users', userRoute_1.default);
 const PORT = 3000;
 console.log(`Servidor escuchando en el puerto ${PORT}`);
 app.listen(PORT);

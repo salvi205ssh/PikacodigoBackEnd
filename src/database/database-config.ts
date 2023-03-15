@@ -5,7 +5,7 @@ export const connect = () => {
   const hostname = "localhost";
   const port = 5432;
   const userName = "postgres";
-  const password = "1996";
+  const password = "M@rte2025";
   const database = "PicaCodigo";
   const schema = "public";
   const dialect: any = "postgres";

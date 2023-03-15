@@ -1,14 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updatetUser = exports.postUser = exports.deleteUser = exports.getUsers = exports.getUser = void 0;
-//import userModel from "../models/userModel";
+//import userModel from "../data/models/userModel";
 const getUsers = (_req, res) => {
-    // const listUsers = userModel.findAll();
-    /*  res.json({
-       listUsers,
-     }); */
     res.json({
-        msg: "get Users",
+        msg: "get User",
     });
 };
 exports.getUsers = getUsers;

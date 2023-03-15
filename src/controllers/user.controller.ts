@@ -1,43 +1,50 @@
-import { Request, Response } from "express";
-import userModel from "../data/models/userModel";
+import { UserService } from "../services/user.service";
+// Crea una instancia del servicio de usuario
+const userService: UserService = new UserService();
 
-const getUsers = (_req: Request, res: Response) => {
+export const userController = {
+  addUser: (req: any, res: any) => {
+    try {
+      // Obtiene el nuevo usuario del cuerpo de la solicitud
+      const newUser = req.body;
 
-  res.json({
-    msg: "get User",
-  });
+      // Llama al método del servicio para añadir el usuario y devuelve una promesa
+      /*
+       * @param {any} newUser - El nuevo usuario a añadir
+       * @returns {Promise<any>} - Una promesa que se resuelve con el resultado de la operación
+       */
+      userService.addUser(newUser).then((result) => {
+        // Envía una respuesta con el resultado de la operación
+        res.json(result);
+      });
+    } catch (exception) {
+      console.log(exception);
+      res.sendStatus(500);
+    }
+  },
+
+  getAllUsers: (_req: any, res: any) => {
+    userService
+      .getAllUsers()
+      .then((result) => {
+        res.json(result);
+      })
+      .catch((exception) => {
+        console.log(exception);
+        res.sendStatus(500);
+      });
+  },
+
+  getUserById: (req: any, res: any) => {
+    try {
+      //el + es un tipado forzado, obliga a que sea un numero
+      const userId = +req.params.id;
+      userService.getUserById(userId).then((result) => {
+        res.json(result);
+      });
+    } catch (error) {
+      console.log(error);
+      res.sendStatus(500);
+    }
+  },
 };
-
-const getUser = (req: Request, res: Response) => {
-  res.json({
-    msg: "get User",
-    id: req.params.id,
-  });
-};
-
-const deleteUser = (req: Request, res: Response) => {
-  res.json({
-    msg: "delete Users",
-    id: req.params.id,
-  });
-};
-
-const postUser = (req: Request, res: Response) => {
-  const { body } = req;
-  res.json({
-    msg: "post Users",
-    body: body,
-  });
-};
-
-const updatetUser = (req: Request, res: Response) => {
-  const { body } = req;
-  const { id } = req.params;
-  res.json({
-    msg: "Update Users",
-    id: id,
-    body: body,
-  });
-};
-
-export { getUser, getUsers, deleteUser, postUser, updatetUser };
