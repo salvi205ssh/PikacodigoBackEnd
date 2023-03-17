@@ -1,9 +1,15 @@
 export class UserDto {
-    userId: string;
-    userNmae: string;
-    password: string;
+    userId: number;
+    userName: string;
+    userLastName: string;
+    //password: string;
+    userBirthdate:Date;
     email: string;
-    active?: boolean;
+    userPhone:string;
+    userLogin:string;
+    userRol:string;
+    userAddress:string;
+    active?: string;
   }
   
   export type NewUserDto = Omit<UserDto, "userId">;
