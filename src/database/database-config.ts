@@ -1,4 +1,4 @@
-import { user } from "../data/models/userModel";
+import { User } from "../data/models/userModel";
 import { Sequelize } from "sequelize-typescript";
 
 export const connect = () => {
@@ -24,7 +24,7 @@ export const connect = () => {
     },
   });
 
-  sequelize.addModels([user]);
+  sequelize.addModels([User]);
 
   const db: any = {};
   db.Sequelize = Sequelize;
