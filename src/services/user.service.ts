@@ -1,28 +1,36 @@
-import { User as DBUser } from "../data/models/userModel";
+import { User as UserPojo } from "../data/models/userModel";
 import { UserRepository } from "../data/repository/user.repository";
-/* import { NewUserDto, UserDto } from "../types"; */
 import { NewUserDto, UserDto } from "../types";
 
-
 export class UserService {
-  private userRepository: UserRepository;
+  _userRepository: UserRepository;
   constructor() {
-    this.userRepository = new UserRepository();
+    this._userRepository = new UserRepository();
   }
 
   //recibe un DTO y devuelve una promesa<userDTO>
-  async addUser(_user: NewUserDto): Promise<number> {
-    // TODO : LLamar al repositorio
-    return 0;
+  async addUser(user: NewUserDto): Promise<number> {
+    const userPjo: UserPojo = this.parseDtoIntoPojo(user);
+    const userPromise = await this._userRepository
+      .addUser(userPjo)
+      .then((userId) => {
+        return userId;
+      })
+      .catch((error) => {
+        console.error(error);
+        throw error;
+      });
+
+    return userPromise;
   }
 
   async getAllUsers(): Promise<UserDto[]> {
-    const userPromise = await this.userRepository
+    const userPromise = await this._userRepository
       .getAllUsers()
       .then((result) => {
         let users: UserDto[] = [];
-        result.forEach((DBUser) => {
-          users.push(this.mapUserPojoToDto(DBUser));
+        result.forEach((UserPojo) => {
+          users.push(this.parsePojoIntoDto(UserPojo));
         });
         return users;
       })
@@ -34,25 +42,56 @@ export class UserService {
     return userPromise;
   }
 
-  async getUserById(_id: number): Promise<UserDto | undefined> {
-    // TODO : LLamar al repositorio
-    return undefined;
+  async getUserById(id: number): Promise<UserDto | undefined> {
+    const userPromise = await this._userRepository
+      .getUserById(id)
+      .then((userAsPojo) => {
+        if (!!userAsPojo) {
+          return this.parsePojoIntoDto(userAsPojo)
+        }else{
+          return undefined;
+        }
+
+      }).catch((error) => {
+        console.error("Error al recuperar usuarios");
+        console.error(error);
+        throw error;
+      });
+
+      return userPromise;
   }
 
-  mapUserPojoToDto(userPojo: DBUser): UserDto {
+  parsePojoIntoDto(userPojo: UserPojo): UserDto {
     const userDto: UserDto = {
       userId: userPojo.userId,
-      userName: userPojo.userName,
-      userLastName: userPojo.userLastName,
+      username: userPojo.username,
+      userlastname: userPojo.userlastname,
       //password: userPojo.;
-      userBirthdate: userPojo.userBirthdate,
-      email: userPojo.userEmail,
-      userPhone: userPojo.userPhone,
-      userLogin: userPojo.userLogin,
-      userRol: userPojo.userRol,
-      userAddress: userPojo.userAddress,
+      userbirthdate: userPojo.userbirthdate,
+      useremail: userPojo.useremail,
+      userphone: userPojo.userphone,
+      userlogin: userPojo.userlogin,
+      userrol: userPojo.userrol,
+      useraddress: userPojo.useraddress,
       active: userPojo.active,
     };
     return userDto;
+  }
+
+  parseDtoIntoPojo(userDto: NewUserDto): UserPojo {
+    let userPojo: UserPojo = new UserPojo();
+
+    userPojo.setDataValue("userId", null);
+    userPojo.setDataValue("username", userDto.username);
+    userPojo.setDataValue("userlastname", userDto.userlastname);
+    userPojo.setDataValue("userbirthdate", userDto.userbirthdate);
+    userPojo.setDataValue("useremail", userDto.useremail);
+    userPojo.setDataValue("userphone", userDto.userphone);
+    userPojo.setDataValue("userlogin", userDto.userlogin);
+    userPojo.setDataValue("userrol", userDto.userrol);
+    userPojo.setDataValue("useraddress", userDto.useraddress);
+    userPojo.setDataValue("active", userDto.active ? "Active" : "Inactive");
+
+    return userPojo;
   }
 }

@@ -1,14 +1,14 @@
 export class UserDto {
   userId: number;
-  userName: string;
-  userLastName: string;
+  username: string;
+  userlastname: string;
   //password: string;
-  userBirthdate:Date;
-  email: string;
-  userPhone:string;
-  userLogin:string;
-  userRol:string;
-  userAddress:string;
+  userbirthdate:Date;
+  useremail: string;
+  userphone:string;
+  userlogin:string;
+  userrol:string;
+  useraddress:string;
   active?: string;
 }
 

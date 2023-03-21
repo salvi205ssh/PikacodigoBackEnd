@@ -4,70 +4,72 @@ import { Table, Column, Model } from "sequelize-typescript";
 @Table({
   freezeTableName: true,
   tableName: "user",
+  createdAt: false,
+  updatedAt: false
 })
 export class User extends Model {
   @Column({
     type: INTEGER,
     primaryKey: true,
-    references: "user_id",
+    field: "user_id",
   })
   userId!: number;
 
   @Column({
     type: STRING,
-    references: "user_name",
+    field: "user_name",
   })
-  userName!: string;
+  username!: string;
 
   @Column({
     type: STRING,
-    references: "user_lastname",
+    field: "user_lastname",
   })
-  userLastName!: string;
+  userlastname!: string;
 
   @Column({
     type: DATE,
-    references: "user_birthdate",
+    field: "user_birthdate",
   })
-  userBirthdate!: Date;
+  userbirthdate!: Date;
 
   @Column({
     type: STRING,
-    references: "user_email",
+    field: "user_email",
   })
-  userEmail!: string;
+  useremail!: string;
 
   @Column({
     type: STRING,
-    references: "user_phone",
+    field: "user_phone",
   })
-  userPhone!: string;
+  userphone!: string;
 
   @Column({
     type: STRING,
-    references: "user_login",
+    field: "user_login",
     values: ["si", "no"],
   })
-  userLogin!: string;
+  userlogin!: string;
 
   @Column({
     type: STRING,
-    references: "user_rol",
+    field: "user_rol",
     values: ["admin", "user"],
   })
-  userRol!: string;
+  userrol!: string;
 
   @Column({
     type: STRING,
-    references: "user_address",
+    field: "user_address",
   })
-  userAddress!: string;
+  useraddress!: string;
 
-  @Column({
-    type: STRING,
-    references: "active",
-  })
   active!: string;
+
+  createdAt: Date;
+
+  updateAt: Date;
 }
 
 export default User;

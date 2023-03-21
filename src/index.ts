@@ -8,6 +8,8 @@ app.use('/users',routesUser);
 
 const PORT = 3000;
 
+//localhost:3000/users
+
 console.log(`Servidor escuchando en el puerto ${PORT}`);
 app.listen(PORT);
 
