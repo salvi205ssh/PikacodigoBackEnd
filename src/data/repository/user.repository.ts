@@ -1,6 +1,7 @@
 import { connect } from "./../../database/database-config";
 import { User as UserPojo } from "../../data/models/userModel";
 import { User as UserDto } from "../models/userModel";
+import { v4 as uuid } from "uuid";
 
 export class UserRepository {
   _database: any = {};
@@ -13,14 +14,18 @@ export class UserRepository {
   }
 
   // Este método añade un nuevo usuario a la base de datos y devuelve su id.
-  async addUser(newUser: UserPojo): Promise<number> {
+  async addUser(newUser: UserPojo): Promise<UserPojo> {
     try {
+      console.log('En el repository: ' + newUser);
+      newUser.user_id= uuid();
       newUser = await this._userRepository.create(newUser);
-      return newUser.id;
+      console.log("addUser desde repository" + newUser.id);
+
+      return newUser;
     } catch (error) {
-      console.error("Se ha producido un error al insertar usuario");
+      console.error("Error addUser desde repository");
       console.error(error);
-      return -1;
+      return null;
     }
   }
 
@@ -29,9 +34,12 @@ export class UserRepository {
     try {
       const users = await this._userRepository.findAll();
       console.log("Users::", users);
+      console.log("getAllUsers desde repository");
       return users;
     } catch (error) {
       console.error("Se ha producido un error al recuperar usuarios");
+      console.log("Error getAllUsers desde repository");
+
       console.error(error);
       return [];
     }
@@ -40,17 +48,17 @@ export class UserRepository {
   // Funcionando
   async getUserById(id: number): Promise<UserPojo> | undefined {
     try {
+      console.log("getUserById desde repository");
       //await devuelve una promesa, no devuelve los datos en el momento
       return await this._userRepository.findByPk(id);
     } catch (error) {
-      console.error("Se ha producido un error al recuperar usuario por id");
+      console.error("Error getUserById desde repository");
       console.error(error);
       return undefined;
     }
   }
 
   //editar
-
 
   //login
 }

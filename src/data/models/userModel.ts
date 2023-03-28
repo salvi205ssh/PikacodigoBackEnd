@@ -1,71 +1,81 @@
-import { DATE, INTEGER, STRING } from "sequelize";
+import { DATE, STRING } from "sequelize";
 import { Table, Column, Model } from "sequelize-typescript";
 
 @Table({
   freezeTableName: true,
+  schema: "public",
   tableName: "user",
   createdAt: false,
-  updatedAt: false
+  updatedAt: false,
 })
 export class User extends Model {
   @Column({
-    type: INTEGER,
     primaryKey: true,
+    type: STRING,
     field: "user_id",
   })
-  userId!: number;
+  user_id: string;
 
   @Column({
     type: STRING,
-    field: "user_name",
+    field: "username",
   })
-  username!: string;
+  username: string;
 
   @Column({
     type: STRING,
-    field: "user_lastname",
+    field: "lastname",
   })
-  userlastname!: string;
+  lastname: string;
+
+  @Column({
+    type: STRING,
+    field: "password",
+  })
+  password: string;
+
 
   @Column({
     type: DATE,
-    field: "user_birthdate",
+    field: "birthdate",
   })
-  userbirthdate!: Date;
+  birthdate: Date;
 
   @Column({
     type: STRING,
-    field: "user_email",
+    field: "email",
   })
-  useremail!: string;
+  email: string;
 
   @Column({
     type: STRING,
-    field: "user_phone",
+    field: "phone",
   })
-  userphone!: string;
+  phone: string;
 
   @Column({
     type: STRING,
-    field: "user_login",
-    values: ["si", "no"],
+    field: "login",
   })
-  userlogin!: string;
+  login: string;
 
   @Column({
     type: STRING,
-    field: "user_rol",
-    values: ["admin", "user"],
+    field: "rol",
   })
-  userrol!: string;
+  rol: string;
 
   @Column({
     type: STRING,
-    field: "user_address",
+    field: "picture",
   })
-  useraddress!: string;
+  picture: string;
 
-  active!: string;
+  @Column({
+    type: STRING,
+    field: "active",
+  })
+  active: string;
 
   createdAt: Date;
 

@@ -3,6 +3,7 @@ import { connect } from "./database/database-config";
 import routesUser from "./routes/userRoute";
 
 const app = express();
+app.use(express.json())
 
 app.use('/users',routesUser);
 

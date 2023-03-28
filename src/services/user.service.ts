@@ -1,6 +1,6 @@
 import { User as UserPojo } from "../data/models/userModel";
 import { UserRepository } from "../data/repository/user.repository";
-import { NewUserDto, UserDto } from "../types";
+import { UserDto } from "../types";
 
 export class UserService {
   _userRepository: UserRepository;
@@ -9,14 +9,20 @@ export class UserService {
   }
 
   //recibe un DTO y devuelve una promesa<userDTO>
-  async addUser(user: NewUserDto): Promise<number> {
+  async addUser(user: UserDto): Promise<UserDto> {
+    console.log('En el service(DTO): ' + user);
     const userPjo: UserPojo = this.parseDtoIntoPojo(user);
+    console.log('En el service(POJO): ' + userPjo);
     const userPromise = await this._userRepository
       .addUser(userPjo)
       .then((userId) => {
+        console.log("addUser desde service");
+
         return userId;
       })
       .catch((error) => {
+        console.log("Error addUser desde service");
+
         console.error(error);
         throw error;
       });
@@ -28,6 +34,8 @@ export class UserService {
     const userPromise = await this._userRepository
       .getAllUsers()
       .then((result) => {
+        console.log("getAllUsers desde service");
+
         let users: UserDto[] = [];
         result.forEach((UserPojo) => {
           users.push(this.parsePojoIntoDto(UserPojo));
@@ -35,7 +43,7 @@ export class UserService {
         return users;
       })
       .catch((err) => {
-        console.error("Error al recuperar usuarios");
+        console.error("Error getAllUsers desde service");
         console.error(err);
         throw err;
       });
@@ -46,40 +54,42 @@ export class UserService {
     const userPromise = await this._userRepository
       .getUserById(id)
       .then((userAsPojo) => {
+        console.log("getUserById desde service");
+
         if (!!userAsPojo) {
-          return this.parsePojoIntoDto(userAsPojo)
-        }else{
+          return this.parsePojoIntoDto(userAsPojo);
+        } else {
           return undefined;
         }
-
-      }).catch((error) => {
-        console.error("Error al recuperar usuarios");
+      })
+      .catch((error) => {
+        console.log("Error getUserById desde service");
         console.error(error);
         throw error;
       });
 
-      return userPromise;
+    return userPromise;
   }
 
   parsePojoIntoDto(userPojo: UserPojo): UserDto {
     const userDto: UserDto = {
-      userId: userPojo.userId,
+      user_id: userPojo.user_id,
       username: userPojo.username,
-      userlastname: userPojo.userlastname,
-      //password: userPojo.;
-      userbirthdate: userPojo.userbirthdate,
-      useremail: userPojo.useremail,
-      userphone: userPojo.userphone,
-      userlogin: userPojo.userlogin,
-      userrol: userPojo.userrol,
-      useraddress: userPojo.useraddress,
-      active: userPojo.active,
+      lastname: userPojo.lastname,
+      password: userPojo.password,
+      birthdate: userPojo.birthdate,
+      email: userPojo.email,
+      phone: userPojo.phone,
+      login: userPojo.login,
+      rol: userPojo.rol,
+      picture: userPojo.picture,
+      active: userPojo.active
     };
     return userDto;
   }
 
-  parseDtoIntoPojo(userDto: NewUserDto): UserPojo {
-    let userPojo: UserPojo = new UserPojo();
+  parseDtoIntoPojo(userDto: UserDto): UserPojo {
+  /*   let userPojo: UserPojo = new UserPojo();
 
     userPojo.setDataValue("userId", null);
     userPojo.setDataValue("username", userDto.username);
@@ -92,6 +102,8 @@ export class UserService {
     userPojo.setDataValue("useraddress", userDto.useraddress);
     userPojo.setDataValue("active", userDto.active ? "Active" : "Inactive");
 
-    return userPojo;
+    return userPojo; */
+    return userDto as UserPojo;
+
   }
 }
