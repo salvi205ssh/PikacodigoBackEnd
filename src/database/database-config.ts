@@ -1,11 +1,12 @@
 import { User } from "../data/models/userModel";
+import { ReviewPojo } from "../data/models/review.model";
 import { Sequelize } from "sequelize-typescript";
 
 export const connect = () => {
   const hostname = "localhost";
   const port = 5000;
   const userName = "postgres";
-  const password = "M@rte2025";
+  const password = "1996";
   const database = "PicaCodigo";
   const schema = "public";
   const dialect: any = "postgres";
@@ -24,7 +25,7 @@ export const connect = () => {
     },
   });
 
-  sequelize.addModels([User]);
+  sequelize.addModels([User, ReviewPojo]);
 
   const db: any = {};
   db.Sequelize = Sequelize;
