@@ -34,7 +34,6 @@ export class User extends Model {
   })
   password: string;
 
-
   @Column({
     type: DATE,
     field: "birthdate",

@@ -1,4 +1,4 @@
-import { User as UserPojo } from "../data/models/userModel";
+import { User as UserPojo } from "../data/models/user.model";
 import { UserRepository } from "../data/repository/user.repository";
 import { UserDto } from "../types";
 
@@ -50,7 +50,7 @@ export class UserService {
     return userPromise;
   }
 
-  async getUserById(id: number): Promise<UserDto | undefined> {
+  async getUserById(id: string): Promise<UserDto | undefined> {
     const userPromise = await this._userRepository
       .getUserById(id)
       .then((userAsPojo) => {

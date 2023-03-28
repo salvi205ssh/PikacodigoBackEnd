@@ -1,4 +1,4 @@
-import { connect } from './../../database/database-config';
+import { connect } from '../../database/user.db.config';
 import { ReviewPojo } from "../models/review.model";
 import { v4 as uuidv4 } from 'uuid';
 

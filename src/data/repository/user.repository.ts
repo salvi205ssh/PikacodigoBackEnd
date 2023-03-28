@@ -1,6 +1,6 @@
-import { connect } from "./../../database/database-config";
-import { User as UserPojo } from "../../data/models/userModel";
-import { User as UserDto } from "../models/userModel";
+import { connect } from "../../database/user.db.config";
+import { User as UserPojo } from "../models/user.model";
+import { User as UserDto } from "../models/user.model";
 import { v4 as uuid } from "uuid";
 
 export class UserRepository {
@@ -46,7 +46,7 @@ export class UserRepository {
   }
 
   // Funcionando
-  async getUserById(id: number): Promise<UserPojo> | undefined {
+  async getUserById(id: string): Promise<UserPojo> | undefined {
     try {
       console.log("getUserById desde repository");
       //await devuelve una promesa, no devuelve los datos en el momento

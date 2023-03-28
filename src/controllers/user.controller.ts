@@ -8,7 +8,7 @@ export const userController = {
       // Obtiene el nuevo usuario del cuerpo de la solicitud
       const newUser = req.body;
       console.log(req.body);
-      console.log('En el controller: ' + newUser);
+      console.log("En el controller: " + newUser);
 
       // Llama al método del servicio para añadir el usuario y devuelve una promesa
       /*
@@ -48,6 +48,7 @@ export const userController = {
     try {
       //el + es un tipado forzado, obliga a que sea un numero
       const userId = req.params.id;
+      console.log("userId en controller " + userId);
       userService.getUserById(userId).then((result) => {
         console.log("getUserById desde controller");
 
@@ -79,9 +80,9 @@ export const userController = {
     try {
       // Obtiene el nuevo usuario del cuerpo de la solicitud
       const newUser = req.body;
-      
-      console.log("updateUser Body: "+req.body);
-      console.log('updateUser en el controller: ' + newUser);
+
+      console.log("updateUser Body: " + req.body);
+      console.log("updateUser en el controller: " + newUser);
 
       userService.updateUser(newUser).then((result) => {
         console.log("updateUser desde controller");
@@ -96,5 +97,4 @@ export const userController = {
       res.sendStatus(500);
     }
   },
-
 };
