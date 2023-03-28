@@ -1,10 +1,12 @@
+import { GamePojo } from './../data/models/game.model';
+import { SalePojo } from './../data/models/sale.models';
 import { User } from "../data/models/userModel";
 import { ReviewPojo } from "../data/models/review.model";
 import { Sequelize } from "sequelize-typescript";
 
 export const connect = () => {
   const hostname = "localhost";
-  const port = 5000;
+  const port = 5432;
   const userName = "postgres";
   const password = "1996";
   const database = "PicaCodigo";
@@ -25,7 +27,7 @@ export const connect = () => {
     },
   });
 
-  sequelize.addModels([User, ReviewPojo]);
+  sequelize.addModels([User, ReviewPojo, SalePojo, GamePojo]);
 
   const db: any = {};
   db.Sequelize = Sequelize;

@@ -35,3 +35,11 @@ export class ReviewDto {
   game_id: string;
   user_id: string;
 }
+
+export class SaleDto {
+  sale_id: string;
+  date: Date;
+  amount: number;
+  game_id: string;
+  user_id: string;
+}
