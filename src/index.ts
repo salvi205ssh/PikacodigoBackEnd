@@ -1,3 +1,4 @@
+import cors from "cors";
 import express from "express";
 import routesUser from "./routes/userRoute";
 import routerReview from './routes/review.route';
@@ -11,6 +12,8 @@ app.use('/reviews', routerReview);
 app.use('/games', routesGame);
 
 const PORT = 8532;
+
+//localhost:3000/users
 
 console.log(`Servidor escuchando en el puerto ${PORT}`);
 app.listen(PORT);
