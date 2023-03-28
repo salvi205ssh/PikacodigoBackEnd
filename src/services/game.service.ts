@@ -1,17 +1,17 @@
-import { GameRespository } from "../data/repository/game.repository"; 
+import { GameRespository } from "../data/repository/game.repository";
 import { GamePojo } from "../data/models/game.model";
 import { GameDto } from "../types";
 
 
 export class GameService {
-    _gameRepository : GameRespository
+    _gameRepository: GameRespository
 
     constructor() {
         this._gameRepository = new GameRespository()
     }
 
-    parsePojoIntoDto(gamePojo : GamePojo) : GameDto {
-        const gameDto : GameDto = {
+    parsePojoIntoDto(gamePojo: GamePojo): GameDto {
+        const gameDto: GameDto = {
             game_id: gamePojo.dataValues.game_id,
             name: gamePojo.dataValues.name,
             distributor: gamePojo.dataValues.distributor,
@@ -28,57 +28,58 @@ export class GameService {
 
 
 
-    async addGame(game : GameDto) : Promise<string> {
-        const gamePojo : GamePojo = this.parseDtoIntoPojo(game)
+    async addGame(game: GameDto): Promise<string> {
+        const gamePojo: GamePojo = this.parseDtoIntoPojo(game)
         const gamePromise = await this._gameRepository
-        .addGame(gamePojo)
-        .then((gameId) =>{ 
-            return gameId
-        })
-        .catch(error => {
-            console.error(error)
-            throw error
-        })
+            .addGame(gamePojo)
+            .then((gameId) => {
+                return gameId
+            })
+            .catch(error => {
+                console.error(error)
+                throw error
+            })
         return gamePromise
     };
 
 
-    async getAllGames() : Promise<GameDto[]> {
+    async getAllGames(): Promise<GameDto[]> {
         const gamesPromise = await this._gameRepository
-        .getAllGames()
-        .then((gamesAsPojo) => {
-            let gamesAsDto : GameDto[] = []
-            gamesAsPojo.forEach((gameAsPojo) => {
-                let gameAsDto = this.parsePojoIntoDto(gameAsPojo)
-                gamesAsDto.push(gameAsDto)
-        })   
-        return gamesAsDto})
-        .catch((error) => {
-        console.error(error)
-        throw error
-    })
-    return gamesPromise
-}
+            .getAllGames()
+            .then((gamesAsPojo) => {
+                let gamesAsDto: GameDto[] = []
+                gamesAsPojo.forEach((gameAsPojo) => {
+                    let gameAsDto = this.parsePojoIntoDto(gameAsPojo)
+                    gamesAsDto.push(gameAsDto)
+                })
+                return gamesAsDto
+            })
+            .catch((error) => {
+                console.error(error)
+                throw error
+            })
+        return gamesPromise
+    }
 
-async getGameById(id : string) : Promise<GameDto | undefined> {
-    const gamePromise = await this._gameRepository
-    .getGameById(id)
-    .then((gameAsPojo) => {
-        if(!!gameAsPojo)
-            return this.parsePojoIntoDto(gameAsPojo)
-            else
-            return undefined
-        })
-        .catch((error) => {
-            console.error(error)
-            throw error
-        })       
+    async getGameById(id: string): Promise<GameDto | undefined> {
+        const gamePromise = await this._gameRepository
+            .getGameById(id)
+            .then((gameAsPojo) => {
+                if (!!gameAsPojo)
+                    return this.parsePojoIntoDto(gameAsPojo)
+                else
+                    return undefined
+            })
+            .catch((error) => {
+                console.error(error)
+                throw error
+            })
         return gamePromise
-};
+    };
 
-parseDtoIntoPojo(gameDto : GameDto) : GamePojo {
-    return gameDto as unknown as GamePojo
-    
-}
-    
+    parseDtoIntoPojo(gameDto: GameDto): GamePojo {
+        return gameDto as unknown as GamePojo
+
+    }
+
 }

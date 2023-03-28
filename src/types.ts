@@ -26,6 +26,12 @@ export class GameDto {
   mode_id: string
   price: number
   stock: number
+};
+
+export class Game_pictureDto {
+  game_picture_id: string
+  picture: string
+  game_id: string
 }
 
 

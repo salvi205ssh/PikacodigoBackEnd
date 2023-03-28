@@ -1,5 +1,5 @@
 import { Table, Column, Model } from 'sequelize-typescript'
-import {STRING, NUMBER} from 'sequelize'
+import { STRING, NUMBER } from 'sequelize'
 
 @Table({
     freezeTableName: true,
@@ -18,7 +18,7 @@ export class GamePojo extends Model {
 
     @Column({
         type: STRING,
-        field: 'name'    
+        field: 'name'
     })
     name: string
 
@@ -74,5 +74,5 @@ export class GamePojo extends Model {
     createAt: Date;
 
     updateAt: Date;
-    
+
 }

@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize-typescript"
-import { GamePojo } from "../data/models/game.model"
+import { Game_picturePojo } from "../data/models/game_picture.model"
 
 export const connect = () => {
     const DB_HOSTNAME = 'localhost'
@@ -24,7 +24,7 @@ export const connect = () => {
         }
     })
 
-    dbConfig.addModels([GamePojo])
+    dbConfig.addModels([Game_picturePojo])
 
     const db: any = {}
     db.Sequelize = Sequelize
