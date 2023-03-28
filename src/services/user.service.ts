@@ -15,10 +15,10 @@ export class UserService {
     console.log('En el service(POJO): ' + userPjo);
     const userPromise = await this._userRepository
       .addUser(userPjo)
-      .then((userId) => {
+      .then((user) => {
         console.log("addUser desde service");
 
-        return userId;
+        return user;
       })
       .catch((error) => {
         console.log("Error addUser desde service");
@@ -64,6 +64,51 @@ export class UserService {
       })
       .catch((error) => {
         console.log("Error getUserById desde service");
+        console.error(error);
+        throw error;
+      });
+
+    return userPromise;
+  }
+
+  async getLogin(email: string, password: string): Promise<UserDto> {
+    const usersPromise = await this._userRepository
+      .getLogin(email, password)
+      .then((result) => {
+        console.log("getLogin desde service");
+
+        /* let usersAsDto: UserDto = this.parsePojoIntoDto(result[0]);
+        console.log(usersAsDto);
+
+        return usersAsDto; */
+        if (!result) {
+          return undefined;
+        }
+
+        return this.parsePojoIntoDto(result);
+      })
+      .catch((error) => {
+        console.error("Error getLogin desde service");
+        console.error(error);
+        throw error;
+      });
+    return usersPromise;
+  }
+
+  async updateUser(user: UserDto): Promise<UserDto> {
+    console.log('En el service(DTO): ' + user);
+    const userPjo: UserPojo = this.parseDtoIntoPojo(user);
+    console.log('En el service(POJO): ' + userPjo);
+    const userPromise = await this._userRepository
+      .updateUser(userPjo)
+      .then((user) => {
+        console.log("updateUser desde service");
+
+        return user;
+      })
+      .catch((error) => {
+        console.log("Error updateUser desde service");
+
         console.error(error);
         throw error;
       });

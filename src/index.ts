@@ -1,9 +1,21 @@
+import cors from "cors";
 import express from "express";
 import { connect } from "./database/database-config";
 import routesUser from "./routes/userRoute";
 
 const app = express();
 app.use(express.json())
+
+// Definir los orígenes permitidos
+const allowedOrigins = ["http://localhost:4200"];
+
+// Configurar las opciones de cors para permitir solicitudes desde los orígenes permitidos
+const options: cors.CorsOptions = {
+  origin: allowedOrigins,
+};
+
+// Utilizar el middleware cors configurado en la aplicación Express
+app.use(cors(options));
 
 app.use('/users',routesUser);
 

@@ -16,8 +16,8 @@ export class UserRepository {
   // Este método añade un nuevo usuario a la base de datos y devuelve su id.
   async addUser(newUser: UserPojo): Promise<UserPojo> {
     try {
-      console.log('En el repository: ' + newUser);
-      newUser.user_id= uuid();
+      console.log("En el repository: " + newUser);
+      newUser.user_id = uuid();
       newUser = await this._userRepository.create(newUser);
       console.log("addUser desde repository" + newUser.id);
 
@@ -58,7 +58,59 @@ export class UserRepository {
     }
   }
 
-  //editar
+  async getLogin(email: string, password: string): Promise<UserPojo> {
+    let user: UserPojo = {} as UserPojo;
+    try {
+      /*   user = await this._database.sequelize.query(
+        "SELECT * FROM public.cryptobros where username=? and password=?", {
+          replacements: [username, password],
+          type: QueryTypes.SELECT
+        }
+      ); */
+      console.log("getLogin desde repository");
 
-  //login
+      console.log("En el repository: " + user);
+
+      return await this._userRepository.findOne({
+        where: { email: email, password: password },
+      });
+    } catch (error) {
+      console.error("Error getLogin desde repository");
+      console.error(error);
+      throw error;
+    }
+    return user;
+  }
+
+  async updateUser(newUser: UserPojo): Promise<UserPojo> {
+    try {
+      //console.log("Update en el repository: " + newUser);
+      await this._userRepository.update(
+        {
+          username: newUser.username,
+          lastname: newUser.lastname,
+          password: newUser.password,
+          birthdate: newUser.birthdate,
+          email: newUser.email,
+          phone: newUser.phone,
+          login: newUser.login,
+          rol: newUser.rol,
+          picture: newUser.picture,
+          active: newUser.active,
+        },
+        {
+          where: {
+            user_id: newUser.user_id,
+          },
+        }
+      );
+      console.log("updateUser desde repository: " + newUser);
+
+      return newUser;
+    } catch (error) {
+      console.error("Error updateUser desde repository");
+      console.error(error);
+      return null;
+    }
+  }
 }

@@ -60,4 +60,41 @@ export const userController = {
       res.sendStatus(500);
     }
   },
+
+  getUserByLogin: (req: any, res: any) => {
+    try {
+      //el + es un tipado forzado, obliga a que sea un numero
+      const email = req.params.email;
+      const password = req.params.password;
+      userService.getLogin(email, password).then((result) => {
+        res.json(result);
+      });
+    } catch (error) {
+      console.log(error);
+      res.sendStatus(500);
+    }
+  },
+
+  updateUser: (req: any, res: any) => {
+    try {
+      // Obtiene el nuevo usuario del cuerpo de la solicitud
+      const newUser = req.body;
+      
+      console.log("updateUser Body: "+req.body);
+      console.log('updateUser en el controller: ' + newUser);
+
+      userService.updateUser(newUser).then((result) => {
+        console.log("updateUser desde controller");
+
+        // Envía una respuesta con el resultado de la operación
+        res.json(result);
+      });
+    } catch (exception) {
+      console.log("Error updateUser desde controller");
+
+      console.log(exception);
+      res.sendStatus(500);
+    }
+  },
+
 };
