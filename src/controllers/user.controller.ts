@@ -47,4 +47,7 @@ export const userController = {
       res.sendStatus(500);
     }
   },
+
+
+  
 };

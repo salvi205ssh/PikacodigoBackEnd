@@ -1,12 +1,15 @@
 import express from "express";
 import { connect } from "./database/database-config";
 import routesUser from "./routes/userRoute";
+import routesGame from "./routes/game.routes";
 
 const app = express();
+app.use(express.json())
 
 app.use('/users',routesUser);
+app.use('/games',routesGame);
 
-const PORT = 3000;
+const PORT = 8532;
 
 console.log(`Servidor escuchando en el puerto ${PORT}`);
 app.listen(PORT);

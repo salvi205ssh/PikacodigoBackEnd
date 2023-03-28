@@ -3,7 +3,7 @@ import { Sequelize } from "sequelize-typescript";
 
 export const connect = () => {
   const hostname = "localhost";
-  const port = 5432;
+  const port = 5000;
   const userName = "postgres";
   const password = "M@rte2025";
   const database = "PicaCodigo";
