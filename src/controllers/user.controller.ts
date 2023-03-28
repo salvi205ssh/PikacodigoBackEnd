@@ -47,7 +47,7 @@ export const userController = {
   getUserById: (req: any, res: any) => {
     try {
       //el + es un tipado forzado, obliga a que sea un numero
-      const userId = +req.params.id;
+      const userId = req.params.id;
       userService.getUserById(userId).then((result) => {
         console.log("getUserById desde controller");
 
