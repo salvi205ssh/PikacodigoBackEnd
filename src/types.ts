@@ -3,12 +3,12 @@ export class UserDto {
   userName: string;
   userLastName: string;
   //password: string;
-  userBirthdate:Date;
+  userBirthdate: Date;
   email: string;
-  userPhone:string;
-  userLogin:string;
-  userRol:string;
-  userAddress:string;
+  userPhone: string;
+  userLogin: string;
+  userRol: string;
+  userAddress: string;
   active?: string;
 }
 
@@ -26,5 +26,12 @@ export class GameDto {
   mode_id: string
   price: number
   stock: number
+};
+
+export class Game_pictureDto {
+  game_picture_id: string
+  picture: string
+  game_id: string
 }
+
 
