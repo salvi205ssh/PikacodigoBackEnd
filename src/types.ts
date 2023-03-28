@@ -3,18 +3,14 @@ export class UserDto {
   username: string;
   lastname: string;
   password: string;
-  birthdate:Date;
+  birthdate: Date;
   email: string;
-  phone:string;
-  login:string;
-  rol:string;
-  picture:string;
+  phone: string;
+  login: string;
+  rol: string;
+  picture: string;
   active: string;
 }
-
-//export type NewUserDto = Omit<UserDto, "userId">;
-
-
 export class GameDto {
   game_id: string
   name: string

@@ -2,7 +2,6 @@ import { GameRespository } from "../data/repository/game.repository";
 import { GamePojo } from "../data/models/game.model";
 import { GameDto } from "../types";
 
-
 export class GameService {
     _gameRepository: GameRespository
 
@@ -26,8 +25,6 @@ export class GameService {
         return gameDto
     }
 
-
-
     async addGame(game: GameDto): Promise<string> {
         const gamePojo: GamePojo = this.parseDtoIntoPojo(game)
         const gamePromise = await this._gameRepository
@@ -41,7 +38,6 @@ export class GameService {
             })
         return gamePromise
     };
-
 
     async getAllGames(): Promise<GameDto[]> {
         const gamesPromise = await this._gameRepository
@@ -81,5 +77,4 @@ export class GameService {
         return gameDto as unknown as GamePojo
 
     }
-
 }

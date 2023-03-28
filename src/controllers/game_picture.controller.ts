@@ -2,7 +2,6 @@ import { Game_pictureService } from "../services/game_picture.service";
 const game_pictureService: Game_pictureService = new Game_pictureService()
 
 export const game_pictureController = {
-
     addGame_picture: (req: any, res: any) => {
         try {
             const newGame_picture = req.body
@@ -14,8 +13,6 @@ export const game_pictureController = {
             res.sendStatus(500)
         }
     },
-
-
 
     getAllGame_picture: (_req: any, res: any) => {
         game_pictureService
@@ -40,10 +37,4 @@ export const game_pictureController = {
             res.sendStatus(500);
         }
     },
-
-
-
-
-
-
 };

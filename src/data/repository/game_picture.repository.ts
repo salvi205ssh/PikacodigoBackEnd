@@ -1,5 +1,5 @@
 import { Game_picturePojo } from "../models/game_picture.model";
-import { connect } from "../../database/game_picture.db.config"
+import { connect } from "../config/db.config";
 import { v4 as uuidv4 } from 'uuid';
 
 export class Game_pictureRespository {
@@ -11,7 +11,6 @@ export class Game_pictureRespository {
         this._game_pictureRespository = this._database.sequelize.getRepository(Game_picturePojo)
     }
 
-
     async getAllGames_picture(): Promise<Game_picturePojo[]> {
         try {
             return await this._game_pictureRespository/*  */
@@ -21,8 +20,6 @@ export class Game_pictureRespository {
             return []
         }
     }
-
-
 
     async getGame_pictureById(id: string): Promise<Game_picturePojo | undefined> {
         try {
@@ -38,16 +35,9 @@ export class Game_pictureRespository {
             newGame_picture.game_picture_id = uuidv4();
             newGame_picture = await this._game_pictureRespository.create(newGame_picture)
             return newGame_picture.game_picture_id
-
         } catch (error) {
             console.error(error)
             return ''
-
         }
-
-
     }
-
-
-
 }

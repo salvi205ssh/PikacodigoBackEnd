@@ -70,9 +70,7 @@ export class GamePojo extends Model {
     })
     stock: number
 
-
     createAt: Date;
 
     updateAt: Date;
-
 }

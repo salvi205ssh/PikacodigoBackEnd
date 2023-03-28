@@ -11,19 +11,18 @@ app.use(express.json())
 
 const PORT = 3000;
 
-const allowedOrigins = ['http://localhost:4200'] ;
-const options: cors.CorsOptions = { origin: allowedOrigins } 
+const allowedOrigins = ['http://localhost:4200'];
+const options: cors.CorsOptions = {
+    origin: allowedOrigins
+}
 app.use(cors(options))
-app.use('/users',routesUser);
-app.use('/games',routesGame);
-app.use('/games_picture',routesGame_picture);
 
+app.use('/games', routesGame);
+app.use('/games_picture', routesGame_picture);
 app.use('/users', routesUser);
 app.use('/reviews', routerReview);
-app.use('/games', routesGame);
 app.use('/sales', routerSale);
 
-console.log(`Servidor escuchando en el puerto ${PORT}`);
-app.listen(PORT);
-
-export default app;
+app.listen(PORT, () => {
+    console.log(`Servidor escuchando en el puerto ${PORT}`);
+});

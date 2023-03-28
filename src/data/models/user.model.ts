@@ -8,7 +8,7 @@ import { Table, Column, Model } from "sequelize-typescript";
   createdAt: false,
   updatedAt: false,
 })
-export class User extends Model {
+export class UserPojo extends Model {
   @Column({
     primaryKey: true,
     type: STRING,
@@ -80,5 +80,3 @@ export class User extends Model {
 
   updateAt: Date;
 }
-
-export default User;

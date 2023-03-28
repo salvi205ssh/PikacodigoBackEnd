@@ -1,5 +1,5 @@
 import { GamePojo } from "../models/game.model"
-import { connect } from "../../database/game.db.config"
+import { connect } from "../config/db.config"
 import { v4 as uuidv4 } from 'uuid';
 
 export class GameRespository {
@@ -11,7 +11,6 @@ export class GameRespository {
         this._gameRespository = this._database.sequelize.getRepository(GamePojo)
     }
 
-
     async getAllGames(): Promise<GamePojo[]> {
         try {
             return await this._gameRespository
@@ -21,8 +20,6 @@ export class GameRespository {
             return []
         }
     }
-
-
 
     async getGameById(id: string): Promise<GamePojo | undefined> {
         try {
@@ -38,16 +35,9 @@ export class GameRespository {
             newGame.game_id = uuidv4();
             newGame = await this._gameRespository.create(newGame)
             return newGame.game_id
-
         } catch (error) {
             console.error(error)
             return ''
-
         }
-
-
     }
-
-
-
 }

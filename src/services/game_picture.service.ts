@@ -2,7 +2,6 @@ import { Game_pictureRespository } from "../data/repository/game_picture.reposit
 import { Game_picturePojo } from "../data/models/game_picture.model";
 import { Game_pictureDto } from "../types";
 
-
 export class Game_pictureService {
     _game_pictureRepository: Game_pictureRespository
 
@@ -19,8 +18,6 @@ export class Game_pictureService {
         return game_pictureDto
     }
 
-
-
     async addGame_picture(game_picture: Game_pictureDto): Promise<string> {
         const game_picturePojo: Game_picturePojo = this.parseDtoIntoPojo(game_picture)
         const game_picturePromise = await this._game_pictureRepository
@@ -34,7 +31,6 @@ export class Game_pictureService {
             })
         return game_picturePromise
     };
-
 
     async getAllGames_picture(): Promise<Game_pictureDto[]> {
         const games_picturePromise = await this._game_pictureRepository
@@ -74,5 +70,4 @@ export class Game_pictureService {
         return game_pictureDto as unknown as Game_picturePojo
 
     }
-
 }

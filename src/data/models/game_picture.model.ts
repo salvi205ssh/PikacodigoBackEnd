@@ -28,10 +28,7 @@ export class Game_picturePojo extends Model {
     })
     game_id: string
 
-
-
     createAt: Date;
 
     updateAt: Date;
-
 }

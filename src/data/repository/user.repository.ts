@@ -1,6 +1,6 @@
-import { connect } from "../../database/user.db.config";
-import { User as UserPojo } from "../models/user.model";
-import { User as UserDto } from "../models/user.model";
+import { connect } from "../config/db.config";
+import { UserPojo } from "../models/user.model";
+import { UserDto } from "../../types";
 import { v4 as uuid } from "uuid";
 
 export class UserRepository {

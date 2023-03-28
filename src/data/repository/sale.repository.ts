@@ -1,6 +1,6 @@
 import { GameDto } from './../../types';
 import { GameRespository } from './game.repository';
-import { connect } from './../../database/database-config';
+import { connect } from "../config/db.config";
 import { SalePojo } from '../models/sale.models';
 import { v4 as uuidv4 } from 'uuid';
 

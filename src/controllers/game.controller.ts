@@ -2,7 +2,6 @@ import { GameService } from "../services/game.service";
 const gameService: GameService = new GameService()
 
 export const gameController = {
-
     addGame: (req: any, res: any) => {
         try {
             const newGame = req.body
@@ -15,8 +14,6 @@ export const gameController = {
         }
     },
 
-
-
     getAllGame: (_req: any, res: any) => {
         gameService
             .getAllGames()
@@ -28,7 +25,7 @@ export const gameController = {
                 res.sendStatus(500)
             })
     },
-
+    
     getGameById: (req: any, res: any) => {
         try {
             const gameId = req.params.id;
@@ -40,10 +37,4 @@ export const gameController = {
             res.sendStatus(500);
         }
     },
-
-
-
-
-
-
 };
