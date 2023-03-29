@@ -11,6 +11,7 @@ export class UserDto {
   picture: string;
   active: string;
 }
+
 export class GameDto {
   game_id: string
   name: string
@@ -30,7 +31,6 @@ export class Game_pictureDto {
   game_id: string
 }
 
-
 export class ReviewDto {
   review_id: string;
   content: string;
@@ -44,4 +44,12 @@ export class SaleDto {
   amount: number;
   game_id: string;
   user_id: string;
+}
+
+export class MessageDto {
+  message_id: string;
+  content: string;
+  date: Date;
+  user_from_id: string;
+  user_to_id: string;
 }

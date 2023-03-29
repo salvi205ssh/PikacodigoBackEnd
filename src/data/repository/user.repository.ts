@@ -1,6 +1,5 @@
 import { connect } from "../config/db.config";
 import { UserPojo } from "../models/user.model";
-import { UserDto } from "../../types";
 import { v4 as uuid } from "uuid";
 
 export class UserRepository {
@@ -30,11 +29,9 @@ export class UserRepository {
   }
 
   // Funcionando
-  async getAllUsers(): Promise<UserDto[]> {
+  async getAllUsers(): Promise<UserPojo[]> {
     try {
       const users = await this._userRepository.findAll();
-      console.log("Users::", users);
-      console.log("getAllUsers desde repository");
       return users;
     } catch (error) {
       console.error("Se ha producido un error al recuperar usuarios");
