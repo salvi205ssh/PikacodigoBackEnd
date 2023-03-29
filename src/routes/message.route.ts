@@ -1,8 +1,9 @@
 import express from 'express';
-// import { reviewController } from '../controllers/review.controller';
+import { messageController } from '../controllers/message.controller';
 
 const router = express.Router();
 
-router.post('/add', /* messageController */);
+router.post('/add', messageController.addNewReview);
+router.patch('/update/message/read', messageController.updateFieldRead);
 
 export default router;

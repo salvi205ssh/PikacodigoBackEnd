@@ -1,5 +1,5 @@
 import { Table, Column, Model } from "sequelize-typescript";
-import { STRING, DATE } from "sequelize";
+import { STRING, DATE, NUMBER } from "sequelize";
 
 @Table({
     freezeTableName: true,
@@ -15,7 +15,7 @@ export class MessagePojo extends Model {
         field: 'message_id'
     })
     message_id: string;
-    
+
     @Column({
         type: STRING,
         field: 'content'
@@ -39,6 +39,12 @@ export class MessagePojo extends Model {
         field: 'user_to_id'
     })
     user_to_id: string;
+
+    @Column({
+        type: NUMBER,
+        field: 'read'
+    })
+    read: number;
 
     createAt: Date;
 

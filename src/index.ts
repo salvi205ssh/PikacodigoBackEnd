@@ -5,6 +5,7 @@ import routerReview from './routes/review.route';
 import routesGame from "./routes/game.routes";
 import routerSale from './routes/sale.route';
 import routesGame_picture from "./routes/game_picture.routes";
+import routerMessage from './routes/message.route';
 
 const app = express();
 app.use(express.json())
@@ -22,6 +23,7 @@ app.use('/games_picture', routesGame_picture);
 app.use('/users', routesUser);
 app.use('/reviews', routerReview);
 app.use('/sales', routerSale);
+app.use('/messages', routerMessage);
 
 app.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto ${PORT}`);

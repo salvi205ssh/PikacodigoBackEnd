@@ -21,4 +21,35 @@ export class MessageRepository {
             return '';
         }
     }
+
+    async getMessageById(messageId: string): Promise<MessagePojo> {
+        try {
+            return await this._messageRepository.findByPk(messageId);
+        } catch (exception) {
+            console.error(exception);
+            return undefined;
+        }
+    }
+
+    async updateFieldRead(message: any): Promise<string> {
+        try {
+            const messageExist = await this.getMessageById(message.message_id)
+                .then(result => result);
+
+            if (!messageExist) {
+                throw new Error('Este mensaje no existe');
+            }
+
+            await this._messageRepository.update({ read: 1 }, {
+                where: {
+                    message_id: message.message_id
+                }
+            });
+
+            return message.message_id;
+        } catch (exception) {
+            console.error(exception);
+            return exception;
+        }
+    }
 }

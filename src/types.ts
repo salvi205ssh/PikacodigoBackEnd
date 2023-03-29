@@ -52,4 +52,5 @@ export class MessageDto {
   date: Date;
   user_from_id: string;
   user_to_id: string;
+  read: number;
 }

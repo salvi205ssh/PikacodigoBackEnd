@@ -10,5 +10,13 @@ export const messageController = {
             console.error(exception);
             res.sendStatus(500);
         }
+    },
+    updateFieldRead: (req: any, res: any) => {
+        try {
+            messageService.updateFieldRead(req.body).then(messageUpdated => res.send(messageUpdated));
+        } catch (exception) {
+            console.error(exception);
+            res.sendStatus(500);
+        }
     }
 }
