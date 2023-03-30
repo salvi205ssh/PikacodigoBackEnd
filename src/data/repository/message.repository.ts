@@ -52,4 +52,17 @@ export class MessageRepository {
             return exception;
         }
     }
+
+    async getAllMessagesByUserId(idUser: string): Promise<any> {
+        try {
+            return await this._messageRepository.findAll({
+                where: {
+                    user_to_id: idUser
+                }
+            })
+        } catch (exception) {
+            console.error(exception);
+            return [];
+        }
+    }
 }

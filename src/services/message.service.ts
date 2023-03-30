@@ -29,6 +29,15 @@ export class MessageService {
             })
     }
 
+    async getAllMessagesByUserId(idUser: string): Promise<any>{
+        return await this.messageRepository.getAllMessagesByUserId(idUser)
+            .then(result => result)
+            .catch(expception => {
+                console.error(expception);
+                throw expception;
+            })
+    }
+
     parsePojoIntoDto(messagePojo: MessagePojo): MessageDto {
         const messageDto: MessageDto = {
             message_id: messagePojo.dataValues.message_id,

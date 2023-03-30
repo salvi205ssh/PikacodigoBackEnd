@@ -18,5 +18,13 @@ export const messageController = {
             console.error(exception);
             res.sendStatus(500);
         }
+    },
+    getAllMessagesByUserId: (req: any, res: any) => {
+        try {
+            messageService.getAllMessagesByUserId(req.params.id).then(messageUpdated => res.send(messageUpdated));
+        } catch (exception) {
+            console.error(exception);
+            res.sendStatus(500);
+        }
     }
 }
