@@ -11,7 +11,7 @@ export const connect = () => {
     const DB_PORT = 5432
     const DB_NAME = 'PicaCodigo'
     const DB_USERNAME = 'postgres'
-    const DB_PASSWORD = '1996'
+    const DB_PASSWORD = 'M@rte2025'
     const DB_SCHEMA = 'public'
     const DB_DIALECT: any = 'postgres'
 
