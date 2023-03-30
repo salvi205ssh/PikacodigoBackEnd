@@ -185,7 +185,7 @@ export class UserService {
     const userDto: UserDto = {
       user_id: userPojo.dataValues.user_id,
       username: userPojo.dataValues.username,
-      lastname: userPojo.dataValues.lastname,
+      fullname: userPojo.dataValues.fullname,
       password: userPojo.dataValues.password,
       birthdate: userPojo.dataValues.birthdate,
       email: userPojo.dataValues.email,

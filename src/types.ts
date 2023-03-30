@@ -1,7 +1,7 @@
 export class UserDto {
   user_id: string;
   username: string;
-  lastname: string;
+  fullname: string;
   password: string;
   birthdate: Date;
   email: string;

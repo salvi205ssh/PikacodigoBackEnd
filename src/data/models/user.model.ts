@@ -24,9 +24,9 @@ export class UserPojo extends Model {
 
   @Column({
     type: STRING,
-    field: "lastname",
+    field: "fullname",
   })
-  lastname: string;
+  fullname: string;
 
   @Column({
     type: STRING,

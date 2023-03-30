@@ -82,7 +82,7 @@ export class UserRepository {
       await this._userRepository.update(
         {
           username: newUser.username,
-          lastname: newUser.lastname,
+          fullname: newUser.fullname,
           password: newUser.password,
           birthdate: newUser.birthdate,
           email: newUser.email,
