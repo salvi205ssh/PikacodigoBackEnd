@@ -145,6 +145,42 @@ export class UserService {
     return userPromise;
   }
 
+  async logInUser(user_id: string): Promise<UserDto> {
+    const userPromise = await this._userRepository
+      .logInUser(user_id)
+      .then((user) => {
+        console.log("logInUser desde service");
+
+        return user;
+      })
+      .catch((error) => {
+        console.log("Error logInUser desde service");
+
+        console.error(error);
+        throw error;
+      });
+
+    return userPromise;
+  }
+
+  async logOutUser(user_id: string): Promise<UserDto> {
+    const userPromise = await this._userRepository
+      .logOutUser(user_id)
+      .then((user) => {
+        console.log("logOutUser desde service");
+
+        return user;
+      })
+      .catch((error) => {
+        console.log("Error logOutUser desde service");
+
+        console.error(error);
+        throw error;
+      });
+
+    return userPromise;
+  }
+
   parsePojoIntoDto(userPojo: UserPojo): UserDto {
     const userDto: UserDto = {
       user_id: userPojo.dataValues.user_id,

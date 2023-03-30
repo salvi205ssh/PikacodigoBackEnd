@@ -79,7 +79,6 @@ export class UserRepository {
 
   async updateUser(newUser: UserPojo): Promise<UserPojo> {
     try {
-      //console.log("Update en el repository: " + newUser);
       await this._userRepository.update(
         {
           username: newUser.username,
@@ -146,6 +145,44 @@ export class UserRepository {
       //  return user_id;
     } catch (error) {
       console.error("Error updateActiveUser desde repository");
+      console.error(error);
+      return null;
+    }
+  }
+
+  async logInUser(user_id: string): Promise<UserPojo> {
+    try {
+      return await this._userRepository.update(
+        {
+          login: "Si",
+        },
+        {
+          where: {
+            user_id: user_id,
+          },
+        }
+      );
+    } catch (error) {
+      console.error("Error logInUser desde repository");
+      console.error(error);
+      return null;
+    }
+  }
+
+  async logOutUser(user_id: string): Promise<UserPojo> {
+    try {
+      return await this._userRepository.update(
+        {
+          login: "No",
+        },
+        {
+          where: {
+            user_id: user_id,
+          },
+        }
+      );
+    } catch (error) {
+      console.error("Error logOutUser desde repository");
       console.error(error);
       return null;
     }
