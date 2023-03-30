@@ -28,7 +28,6 @@ export class UserRepository {
     }
   }
 
-  // Funcionando
   async getAllUsers(): Promise<UserPojo[]> {
     try {
       const users = await this._userRepository.findAll();
@@ -42,7 +41,6 @@ export class UserRepository {
     }
   }
 
-  // Funcionando
   async getUserById(id: string): Promise<UserPojo> | undefined {
     try {
       console.log("getUserById desde repository");
@@ -106,6 +104,48 @@ export class UserRepository {
       return newUser;
     } catch (error) {
       console.error("Error updateUser desde repository");
+      console.error(error);
+      return null;
+    }
+  }
+
+  async banearUser(user_id: string): Promise<UserPojo> {
+    try {
+      return await this._userRepository.update(
+        {
+          active: "No",
+        },
+        {
+          where: {
+            user_id: user_id,
+          },
+        }
+      );
+    } catch (error) {
+      console.error("Error updateActiveUser desde repository");
+      console.error(error);
+      return null;
+    }
+  }
+
+  async activeUser(user_id: string): Promise<UserPojo> {
+    try {
+      //console.log("Update en el repository: " + newUser);
+      return await this._userRepository.update(
+        {
+          active: "Si",
+        },
+        {
+          where: {
+            user_id: user_id,
+          },
+        }
+      );
+      console.log("updateActiveUser desde repository: ");
+
+      //  return user_id;
+    } catch (error) {
+      console.error("Error updateActiveUser desde repository");
       console.error(error);
       return null;
     }

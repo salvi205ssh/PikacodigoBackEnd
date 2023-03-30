@@ -97,4 +97,42 @@ export const userController = {
       res.sendStatus(500);
     }
   },
+
+  banearUser: (req: any, res: any) => {
+    try {
+      console.log("banearUser en el controller: ");
+      const userId = req.params.id;
+
+      userService.banearUser(userId).then((result) => {
+        console.log("banearUser desde controller");
+
+        // Envía una respuesta con el resultado de la operación
+        res.json(result);
+      });
+    } catch (exception) {
+      console.log("Error banearUser desde controller");
+
+      console.log(exception);
+      res.sendStatus(500);
+    }
+  },
+
+  activeUser: (req: any, res: any) => {
+    try {
+      console.log("activeUser en el controller: ");
+      const userId = req.params.id;
+
+      userService.activeUser(userId).then((result) => {
+        console.log("activeUser desde controller");
+
+        // Envía una respuesta con el resultado de la operación
+        res.json(result);
+      });
+    } catch (exception) {
+      console.log("Error activeUser desde controller");
+
+      console.log(exception);
+      res.sendStatus(500);
+    }
+  },
 };

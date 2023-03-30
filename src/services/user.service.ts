@@ -89,9 +89,9 @@ export class UserService {
   }
 
   async updateUser(user: UserDto): Promise<UserDto> {
-    console.log('En el service(DTO): ' + user);
+    console.log("En el service(DTO): " + user);
     const userPjo: UserPojo = this.parseDtoIntoPojo(user);
-    console.log('En el service(POJO): ' + userPjo);
+    console.log("En el service(POJO): " + userPjo);
     const userPromise = await this._userRepository
       .updateUser(userPjo)
       .then((user) => {
@@ -101,6 +101,42 @@ export class UserService {
       })
       .catch((error) => {
         console.log("Error updateUser desde service");
+
+        console.error(error);
+        throw error;
+      });
+
+    return userPromise;
+  }
+
+  async banearUser(user_id: string): Promise<UserDto> {
+    const userPromise = await this._userRepository
+      .banearUser(user_id)
+      .then((user) => {
+        console.log("banearUser desde service");
+
+        return user;
+      })
+      .catch((error) => {
+        console.log("Error banearUser desde service");
+
+        console.error(error);
+        throw error;
+      });
+
+    return userPromise;
+  }
+
+  async activeUser(user_id: string): Promise<UserDto> {
+    const userPromise = await this._userRepository
+      .activeUser(user_id)
+      .then((user) => {
+        console.log("activeUser desde service");
+
+        return user;
+      })
+      .catch((error) => {
+        console.log("Error activeUser desde service");
 
         console.error(error);
         throw error;
@@ -121,7 +157,7 @@ export class UserService {
       login: userPojo.dataValues.login,
       rol: userPojo.dataValues.rol,
       picture: userPojo.dataValues.picture,
-      active: userPojo.dataValues.active
+      active: userPojo.dataValues.active,
     };
     return userDto;
   }
