@@ -90,7 +90,7 @@ export class UserRepository {
           login: newUser.login,
           rol: newUser.rol,
           picture: newUser.picture,
-          active: newUser.status,
+          status: newUser.status,
         },
         {
           where: {
@@ -112,7 +112,7 @@ export class UserRepository {
     try {
       return await this._userRepository.update(
         {
-          active: "No",
+          status: "Inactive",
         },
         {
           where: {
@@ -132,7 +132,7 @@ export class UserRepository {
       //console.log("Update en el repository: " + newUser);
       return await this._userRepository.update(
         {
-          active: "Si",
+          status: "Active",
         },
         {
           where: {
