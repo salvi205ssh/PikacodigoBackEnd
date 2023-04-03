@@ -72,9 +72,9 @@ export class UserPojo extends Model {
 
   @Column({
     type: STRING,
-    field: "active",
+    field: "status",
   })
-  active: string;
+  status: string;
 
   createdAt: Date;
 

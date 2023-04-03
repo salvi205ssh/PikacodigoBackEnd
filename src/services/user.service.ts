@@ -193,7 +193,7 @@ export class UserService {
       login: userPojo.dataValues.login,
       rol: userPojo.dataValues.rol,
       picture: userPojo.dataValues.picture,
-      active: userPojo.dataValues.active,
+      status: userPojo.dataValues.status,
     };
     return userDto;
   }
