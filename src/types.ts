@@ -16,7 +16,7 @@ export class GameDto {
   game_id: string
   name: string
   distributor: string
-  starts: number
+  stars: number
   description: string
   pegi_id: string
   category_id: string

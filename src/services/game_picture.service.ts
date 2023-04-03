@@ -66,6 +66,17 @@ export class Game_pictureService {
         return game_picturePromise
     };
 
+    async getAllGames_pictureByGameId(gameId: string): Promise<Game_pictureDto[]> {
+        return await this._game_pictureRepository.getAllGames_pictureByGameId(gameId)
+            .then(game_pictureAsPojo => game_pictureAsPojo.map(game_pictureAsPojo => this.parsePojoIntoDto(game_pictureAsPojo)))
+            .catch(exception => {
+                console.error(exception);
+                throw exception;
+            })
+    }
+
+
+
     parseDtoIntoPojo(game_pictureDto: Game_pictureDto): Game_picturePojo {
         return game_pictureDto as unknown as Game_picturePojo
 

@@ -37,4 +37,15 @@ export const game_pictureController = {
             res.sendStatus(500);
         }
     },
+
+    getAllGames_pictureByGameId(req: any, res: any) {
+        try {
+            game_pictureService.getAllGames_pictureByGameId(req.params.id).then(result => res.json(result));
+        } catch (exception) {
+            console.error(exception);
+            res.sendStatus(500);
+        }
+    }
+
+
 };

@@ -40,4 +40,20 @@ export class Game_pictureRespository {
             return ''
         }
     }
+
+    async getAllGames_pictureByGameId(gameId: string): Promise<Game_picturePojo[]> {
+        try {
+            return await this._game_pictureRespository.findAll({
+                where: {
+                    game_id: gameId
+                }
+            })
+        } catch (exception) {
+            console.error(exception);
+            return [];
+        }
+    }
+
+
+
 }
