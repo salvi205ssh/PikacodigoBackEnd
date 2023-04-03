@@ -1,6 +1,8 @@
 import { connect } from "../config/db.config";
 import { MessagePojo } from '../models/message.model';
 import { v4 as uuidv4 } from 'uuid';
+import { QueryTypes } from 'sequelize';
+
 
 export class MessageRepository {
     private _db: any = {};
@@ -31,9 +33,9 @@ export class MessageRepository {
         }
     }
 
-    async updateFieldRead(message: any): Promise<string> {
+    async updateFieldRead(idMessage: any): Promise<string> {
         try {
-            const messageExist = await this.getMessageById(message.message_id)
+            const messageExist = await this.getMessageById(idMessage)
                 .then(result => result);
 
             if (!messageExist) {
@@ -42,11 +44,11 @@ export class MessageRepository {
 
             await this._messageRepository.update({ read: 1 }, {
                 where: {
-                    message_id: message.message_id
+                    message_id: idMessage
                 }
             });
 
-            return message.message_id;
+            return idMessage;
         } catch (exception) {
             console.error(exception);
             return exception;
@@ -55,14 +57,31 @@ export class MessageRepository {
 
     async getAllMessagesByUserId(idUser: string): Promise<any> {
         try {
-            return await this._messageRepository.findAll({
+            return await this._db.sequelize.query(`select username, message_id, content, date, user_from_id, user_to_id, read 
+                                                    from public."user"
+                                                    join public.message
+                                                    on public."user".user_id = public.message.user_from_id
+                                                    where user_to_id = '2'`,
+                {
+                    replacements: [idUser],
+                    type: QueryTypes.SELECT
+                });
+        } catch (exception) {
+            console.error(exception);
+            return [];
+        }
+    }
+
+    async deleteMessage(idMessage: string): Promise<any> {
+        try {
+            return await this._messageRepository.destroy({
                 where: {
-                    user_to_id: idUser
+                    message_id: idMessage
                 }
             })
         } catch (exception) {
             console.error(exception);
-            return [];
+            return '';
         }
     }
 }

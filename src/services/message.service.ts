@@ -20,8 +20,8 @@ export class MessageService {
             })
     }
 
-    async updateFieldRead(message: any): Promise<string> {
-        return await this.messageRepository.updateFieldRead(message)
+    async updateFieldRead(idMessage: any): Promise<string> {
+        return await this.messageRepository.updateFieldRead(idMessage)
             .then(result => result)
             .catch(expception => {
                 console.error(expception);
@@ -31,6 +31,15 @@ export class MessageService {
 
     async getAllMessagesByUserId(idUser: string): Promise<any>{
         return await this.messageRepository.getAllMessagesByUserId(idUser)
+            .then(result => result)
+            .catch(expception => {
+                console.error(expception);
+                throw expception;
+            })
+    }
+
+    async deleteMessage(idMessage: string): Promise<any>{
+        return await this.messageRepository.deleteMessage(idMessage)
             .then(result => result)
             .catch(expception => {
                 console.error(expception);
