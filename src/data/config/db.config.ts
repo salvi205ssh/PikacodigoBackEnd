@@ -1,3 +1,4 @@
+import { PegiPojo } from './../models/pegi.model';
 import { Sequelize } from "sequelize-typescript";
 import { Game_picturePojo } from "../models/game_picture.model";
 import { GamePojo } from "../models/game.model";
@@ -6,12 +7,13 @@ import { SalePojo } from "../models/sale.models";
 import { UserPojo } from './../models/user.model';
 import { MessagePojo } from "../models/message.model";
 
+
 export const connect = () => {
     const DB_HOSTNAME = 'localhost'
     const DB_PORT = 5432
-    const DB_NAME = 'PicaCodigo'
+    const DB_NAME = 'picacodigo'
     const DB_USERNAME = 'postgres'
-    const DB_PASSWORD = 'M@rte2025'
+    const DB_PASSWORD = 'postgres'
     const DB_SCHEMA = 'public'
     const DB_DIALECT: any = 'postgres'
 
@@ -29,7 +31,7 @@ export const connect = () => {
         }
     })
 
-    dbConfig.addModels([Game_picturePojo, GamePojo, ReviewPojo, SalePojo, UserPojo, MessagePojo]);
+    dbConfig.addModels([Game_picturePojo, GamePojo, ReviewPojo, SalePojo, UserPojo, MessagePojo, PegiPojo]);
 
     const db: any = {}
     db.Sequelize = Sequelize

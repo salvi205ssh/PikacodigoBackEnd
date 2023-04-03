@@ -108,11 +108,11 @@ export class UserRepository {
     }
   }
 
-  async banearUser(user_id: string): Promise<UserPojo> {
+  async banUser(user_id: string): Promise<UserPojo> {
     try {
       return await this._userRepository.update(
         {
-          active: "No",
+          status: "inactive",
         },
         {
           where: {
@@ -121,18 +121,18 @@ export class UserRepository {
         }
       );
     } catch (error) {
-      console.error("Error updateActiveUser desde repository");
+      console.error("Error updateunbanUser desde repository");
       console.error(error);
       return null;
     }
   }
 
-  async activeUser(user_id: string): Promise<UserPojo> {
+  async unbanUser(user_id: string): Promise<UserPojo> {
     try {
       //console.log("Update en el repository: " + newUser);
       return await this._userRepository.update(
         {
-          active: "Si",
+          status: "active",
         },
         {
           where: {
@@ -140,11 +140,11 @@ export class UserRepository {
           },
         }
       );
-      console.log("updateActiveUser desde repository: ");
+    
 
       //  return user_id;
     } catch (error) {
-      console.error("Error updateActiveUser desde repository");
+      console.error("Error updateunbanUser desde repository");
       console.error(error);
       return null;
     }

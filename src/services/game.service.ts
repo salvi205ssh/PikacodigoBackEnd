@@ -14,7 +14,7 @@ export class GameService {
             game_id: gamePojo.dataValues.game_id,
             name: gamePojo.dataValues.name,
             distributor: gamePojo.dataValues.distributor,
-            starts: gamePojo.dataValues.starts,
+            stars: gamePojo.dataValues.stars,
             description: gamePojo.dataValues.description,
             pegi_id: gamePojo.dataValues.pegi_id,
             category_id: gamePojo.dataValues.category_id,

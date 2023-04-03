@@ -109,16 +109,16 @@ export class UserService {
     return userPromise;
   }
 
-  async banearUser(user_id: string): Promise<UserDto> {
+  async banUser(user_id: string): Promise<UserDto> {
     const userPromise = await this._userRepository
-      .banearUser(user_id)
+      .banUser(user_id)
       .then((user) => {
-        console.log("banearUser desde service");
+        console.log("banUser desde service");
 
         return user;
       })
       .catch((error) => {
-        console.log("Error banearUser desde service");
+        console.log("Error banUser desde service");
 
         console.error(error);
         throw error;
@@ -127,16 +127,16 @@ export class UserService {
     return userPromise;
   }
 
-  async activeUser(user_id: string): Promise<UserDto> {
+  async unbanUser(user_id: string): Promise<UserDto> {
     const userPromise = await this._userRepository
-      .activeUser(user_id)
+      .unbanUser(user_id)
       .then((user) => {
-        console.log("activeUser desde service");
+        console.log("unbanUser desde service");
 
         return user;
       })
       .catch((error) => {
-        console.log("Error activeUser desde service");
+        console.log("Error unbanUser desde service");
 
         console.error(error);
         throw error;

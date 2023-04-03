@@ -98,38 +98,38 @@ export const userController = {
     }
   },
 
-  banearUser: (req: any, res: any) => {
+  banUser: (req: any, res: any) => {
     try {
-      console.log("banearUser en el controller: ");
+      console.log("banUser en el controller: ");
       const userId = req.params.id;
 
-      userService.banearUser(userId).then((result) => {
-        console.log("banearUser desde controller");
+      userService.banUser(userId).then((result) => {
+        console.log("banUser desde controller");
 
         // Envía una respuesta con el resultado de la operación
         res.json(result);
       });
     } catch (exception) {
-      console.log("Error banearUser desde controller");
+      console.log("Error banUser desde controller");
 
       console.log(exception);
       res.sendStatus(500);
     }
   },
 
-  activeUser: (req: any, res: any) => {
+  unbanUser: (req: any, res: any) => {
     try {
-      console.log("activeUser en el controller: ");
+      console.log("unbanUser en el controller: ");
       const userId = req.params.id;
 
-      userService.activeUser(userId).then((result) => {
-        console.log("activeUser desde controller");
+      userService.unbanUser(userId).then((result) => {
+        console.log("unbanUser desde controller");
 
         // Envía una respuesta con el resultado de la operación
         res.json(result);
       });
     } catch (exception) {
-      console.log("Error activeUser desde controller");
+      console.log("Error unbanUser desde controller");
 
       console.log(exception);
       res.sendStatus(500);
