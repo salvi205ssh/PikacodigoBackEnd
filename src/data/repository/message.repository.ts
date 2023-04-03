@@ -65,17 +65,16 @@ export class MessageRepository {
                                                     from public."user"
                                                     join public.message
                                                     on public."user".user_id = public.message.user_from_id
-                                                    where user_to_id = '2'`,
-        {
-          replacements: [idUser],
-          type: QueryTypes.SELECT,
+                                                    where user_to_id = ?`,
+                {
+                    replacements: [idUser],
+                    type: QueryTypes.SELECT
+                });
+        } catch (exception) {
+            console.error(exception);
+            return [];
         }
-      );
-    } catch (exception) {
-      console.error(exception);
-      return [];
     }
-  }
 
   async deleteMessage(idMessage: string): Promise<any> {
     try {
