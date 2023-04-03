@@ -1,9 +1,12 @@
+import { PegiPojo } from './../models/pegi.model';
 import { Sequelize } from "sequelize-typescript";
 import { Game_picturePojo } from "../models/game_picture.model";
 import { GamePojo } from "../models/game.model";
 import { ReviewPojo } from "../models/review.model";
 import { SalePojo } from "../models/sale.models";
 import { UserPojo } from './../models/user.model';
+import { MessagePojo } from "../models/message.model";
+
 
 export const connect = () => {
     const DB_HOSTNAME = 'localhost'
@@ -28,7 +31,7 @@ export const connect = () => {
         }
     })
 
-    dbConfig.addModels([Game_picturePojo, GamePojo, ReviewPojo, SalePojo, UserPojo]);
+    dbConfig.addModels([Game_picturePojo, GamePojo, ReviewPojo, SalePojo, UserPojo, MessagePojo, PegiPojo]);
 
     const db: any = {}
     db.Sequelize = Sequelize

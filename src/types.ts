@@ -1,7 +1,7 @@
 export class UserDto {
   user_id: string;
   username: string;
-  lastname: string;
+  fullname: string;
   password: string;
   birthdate: Date;
   email: string;
@@ -9,7 +9,7 @@ export class UserDto {
   login: string;
   rol: string;
   picture: string;
-  active: string;
+  status: string;
 }
 
 export class GameDto {
@@ -52,4 +52,10 @@ export class MessageDto {
   date: Date;
   user_from_id: string;
   user_to_id: string;
+  read: number;
+}
+
+export class PegiDto {
+  pegi_id: string;
+  name:string;
 }

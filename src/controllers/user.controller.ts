@@ -79,9 +79,9 @@ export const userController = {
   updateUser: (req: any, res: any) => {
     try {
       // Obtiene el nuevo usuario del cuerpo de la solicitud
-      const newUser = req.body;
+      const newUser = req.body.user;
 
-      console.log("updateUser Body: " + req.body);
+      console.log("updateUser Body: " + req.body.user);
       console.log("updateUser en el controller: " + newUser);
 
       userService.updateUser(newUser).then((result) => {
@@ -92,6 +92,82 @@ export const userController = {
       });
     } catch (exception) {
       console.log("Error updateUser desde controller");
+
+      console.log(exception);
+      res.sendStatus(500);
+    }
+  },
+
+  banUser: (req: any, res: any) => {
+    try {
+      console.log("banUser en el controller: ");
+      const userId = req.params.id;
+
+      userService.banUser(userId).then((result) => {
+        console.log("banUser desde controller");
+
+        // Envía una respuesta con el resultado de la operación
+        res.json(result);
+      });
+    } catch (exception) {
+      console.log("Error banUser desde controller");
+
+      console.log(exception);
+      res.sendStatus(500);
+    }
+  },
+
+  unbanUser: (req: any, res: any) => {
+    try {
+      console.log("unbanUser en el controller: ");
+      const userId = req.params.id;
+
+      userService.unbanUser(userId).then((result) => {
+        console.log("unbanUser desde controller");
+
+        // Envía una respuesta con el resultado de la operación
+        res.json(result);
+      });
+    } catch (exception) {
+      console.log("Error unbanUser desde controller");
+
+      console.log(exception);
+      res.sendStatus(500);
+    }
+  },
+
+  logInUser: (req: any, res: any) => {
+    try {
+      console.log("logInUser en el controller: ");
+      const userId = req.params.id;
+
+      userService.logInUser(userId).then((result) => {
+        console.log("logInUser desde controller");
+
+        // Envía una respuesta con el resultado de la operación
+        res.json(result);
+      });
+    } catch (exception) {
+      console.log("Error logInUser desde controller");
+
+      console.log(exception);
+      res.sendStatus(500);
+    }
+  },
+
+  logOutUser: (req: any, res: any) => {
+    try {
+      console.log("logOutUser en el controller: ");
+      const userId = req.params.id;
+
+      userService.logOutUser(userId).then((result) => {
+        console.log("logOutUser desde controller");
+
+        // Envía una respuesta con el resultado de la operación
+        res.json(result);
+      });
+    } catch (exception) {
+      console.log("Error logOutUser desde controller");
 
       console.log(exception);
       res.sendStatus(500);

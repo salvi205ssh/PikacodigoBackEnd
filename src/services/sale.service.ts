@@ -30,6 +30,15 @@ export class SaleService {
             })
     }
 
+    async getGamesByUserId(idUser: string): Promise<any> {
+        return await this.saleRepository.getGamesByUserId(idUser)
+            .then(games => games)
+            .catch(exception => {
+                console.error(exception);
+                throw exception;
+            })
+    }
+
     parsePojoIntoDto(salePojo: SalePojo): SaleDto {
         const reviewDto: SaleDto = {
             sale_id: salePojo.dataValues.sale_id,

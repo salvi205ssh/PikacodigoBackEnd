@@ -89,9 +89,9 @@ export class UserService {
   }
 
   async updateUser(user: UserDto): Promise<UserDto> {
-    console.log('En el service(DTO): ' + user);
+    console.log("En el service(DTO): " + user);
     const userPjo: UserPojo = this.parseDtoIntoPojo(user);
-    console.log('En el service(POJO): ' + userPjo);
+    console.log("En el service(POJO): " + userPjo);
     const userPromise = await this._userRepository
       .updateUser(userPjo)
       .then((user) => {
@@ -109,11 +109,83 @@ export class UserService {
     return userPromise;
   }
 
+  async banUser(user_id: string): Promise<UserDto> {
+    const userPromise = await this._userRepository
+      .banUser(user_id)
+      .then((user) => {
+        console.log("banUser desde service");
+
+        return user;
+      })
+      .catch((error) => {
+        console.log("Error banUser desde service");
+
+        console.error(error);
+        throw error;
+      });
+
+    return userPromise;
+  }
+
+  async unbanUser(user_id: string): Promise<UserDto> {
+    const userPromise = await this._userRepository
+      .unbanUser(user_id)
+      .then((user) => {
+        console.log("unbanUser desde service");
+
+        return user;
+      })
+      .catch((error) => {
+        console.log("Error unbanUser desde service");
+
+        console.error(error);
+        throw error;
+      });
+
+    return userPromise;
+  }
+
+  async logInUser(user_id: string): Promise<UserDto> {
+    const userPromise = await this._userRepository
+      .logInUser(user_id)
+      .then((user) => {
+        console.log("logInUser desde service");
+
+        return user;
+      })
+      .catch((error) => {
+        console.log("Error logInUser desde service");
+
+        console.error(error);
+        throw error;
+      });
+
+    return userPromise;
+  }
+
+  async logOutUser(user_id: string): Promise<UserDto> {
+    const userPromise = await this._userRepository
+      .logOutUser(user_id)
+      .then((user) => {
+        console.log("logOutUser desde service");
+
+        return user;
+      })
+      .catch((error) => {
+        console.log("Error logOutUser desde service");
+
+        console.error(error);
+        throw error;
+      });
+
+    return userPromise;
+  }
+
   parsePojoIntoDto(userPojo: UserPojo): UserDto {
     const userDto: UserDto = {
       user_id: userPojo.dataValues.user_id,
       username: userPojo.dataValues.username,
-      lastname: userPojo.dataValues.lastname,
+      fullname: userPojo.dataValues.fullname,
       password: userPojo.dataValues.password,
       birthdate: userPojo.dataValues.birthdate,
       email: userPojo.dataValues.email,
@@ -121,7 +193,7 @@ export class UserService {
       login: userPojo.dataValues.login,
       rol: userPojo.dataValues.rol,
       picture: userPojo.dataValues.picture,
-      active: userPojo.dataValues.active
+      status: userPojo.dataValues.status,
     };
     return userDto;
   }

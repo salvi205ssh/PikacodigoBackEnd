@@ -11,4 +11,12 @@ export const saleController = {
             res.sendStatus(500);
         }
     },
+    getGamesByUserId: (req: any, res: any) => {
+        try {
+            saleService.getGamesByUserId(req.params.id).then(games => res.json(games));
+        } catch (exception) {
+            console.error(exception);
+            res.sendStatus(500);
+        }
+    }
 }
