@@ -9,7 +9,7 @@ export class UserDto {
   login: string;
   rol: string;
   picture: string;
-  active: string;
+  status: string;
 }
 
 export class GameDto {
