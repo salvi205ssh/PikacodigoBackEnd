@@ -13,7 +13,7 @@ export const messageController = {
     },
     updateFieldRead: (req: any, res: any) => {
         try {
-            messageService.updateFieldRead(req.body).then(messageUpdated => res.send(messageUpdated));
+            messageService.updateFieldRead(req.body.idMessage).then(messageUpdated => res.json(messageUpdated));
         } catch (exception) {
             console.error(exception);
             res.sendStatus(500);
@@ -21,7 +21,15 @@ export const messageController = {
     },
     getAllMessagesByUserId: (req: any, res: any) => {
         try {
-            messageService.getAllMessagesByUserId(req.params.id).then(messageUpdated => res.send(messageUpdated));
+            messageService.getAllMessagesByUserId(req.params.id).then(messageUpdated => res.json(messageUpdated));
+        } catch (exception) {
+            console.error(exception);
+            res.sendStatus(500);
+        }
+    },
+    deleteMessage: (req: any, res: any) => {
+        try {
+            messageService.deleteMessage(req.params.id).then(messageDeleted => res.json(messageDeleted));
         } catch (exception) {
             console.error(exception);
             res.sendStatus(500);

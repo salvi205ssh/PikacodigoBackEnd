@@ -90,7 +90,7 @@ export class UserRepository {
           login: newUser.login,
           rol: newUser.rol,
           picture: newUser.picture,
-          active: newUser.status,
+          status: newUser.status,
         },
         {
           where: {

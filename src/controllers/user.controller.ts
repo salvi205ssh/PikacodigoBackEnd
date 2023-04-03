@@ -79,9 +79,9 @@ export const userController = {
   updateUser: (req: any, res: any) => {
     try {
       // Obtiene el nuevo usuario del cuerpo de la solicitud
-      const newUser = req.body;
+      const newUser = req.body.user;
 
-      console.log("updateUser Body: " + req.body);
+      console.log("updateUser Body: " + req.body.user);
       console.log("updateUser en el controller: " + newUser);
 
       userService.updateUser(newUser).then((result) => {
