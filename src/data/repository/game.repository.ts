@@ -40,6 +40,37 @@ export class GameRespository {
             return ''
         }
     }
+
+    async updateGame(newGame: GamePojo): Promise<GamePojo> {
+        try {
+          await this._gameRespository.update(
+            {
+              name: newGame.name,
+              distributor: newGame.distributor,
+              stars: newGame.stars,
+              description: newGame.description,
+              pegi_id: newGame.pegi_id,
+              category_id: newGame.category_id,
+              mode_id: newGame.mode_id,
+              price: newGame.price,
+              stock: newGame.stock
+            },
+            {
+              where: {
+                game_id: newGame.game_id,
+              },
+            }
+          );
+          console.log("updateGame desde repository: " + newGame);
+    
+          return newGame;
+        } catch (error) {
+          console.error("Error updateGame desde repository");
+          console.error(error);
+          return null;
+        }
+      }
+
 }
 
 

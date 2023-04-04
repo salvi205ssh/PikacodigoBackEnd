@@ -37,4 +37,26 @@ export const gameController = {
             res.sendStatus(500);
         }
     },
+
+    updateGame: (req: any, res: any) => {
+        try {
+          // Obtiene el nuevo usuario del cuerpo de la solicitud
+          const newGame = req.body.game;
+    
+          console.log("updateGame Body: " + req.body.game);
+          console.log("updateGame en el controller: " + newGame);
+    
+          gameService.updateGame(newGame).then((result) => {
+            console.log("updateGame desde controller");
+    
+            // Envía una respuesta con el resultado de la operación
+            res.json(result);
+          });
+        } catch (exception) {
+          console.log("Error updateGame desde controller");
+    
+          console.log(exception);
+          res.sendStatus(500);
+        }
+      },
 };

@@ -73,6 +73,29 @@ export class GameService {
         return gamePromise
     };
 
+    async updateGame(game: GameDto): Promise<GameDto> {
+        console.log("En el service(DTO): " + game);
+        const gamePjo: GamePojo = this.parseDtoIntoPojo(game);
+        console.log("En el service(POJO): " + gamePjo);
+        const gamePromise = await this._gameRepository
+          .updateGame(gamePjo)
+          .then((game) => {
+            console.log("updateGame desde service");
+    
+            return game;
+          })
+          .catch((error) => {
+            console.log("Error updateGame desde service");
+    
+            console.error(error);
+            throw error;
+          });
+    
+        return gamePromise;
+      }
+
+    
+
     parseDtoIntoPojo(gameDto: GameDto): GamePojo {
         return gameDto as unknown as GamePojo
 
